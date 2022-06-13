@@ -1,0 +1,198 @@
+﻿[
+  {
+    "p": {
+"identity": 177,
+"labels": [
+        "Person"
+      ],
+"properties": {
+"born": 1970,
+"name": "Stephen McFeely"
+      }
+    },
+    "r": {
+"identity": 258,
+"start": 177,
+"end": 171,
+"type": "WROTE",
+"properties": {
+
+      }
+    },
+    "m": {
+"identity": 171,
+"labels": [
+        "Movie"
+      ],
+"properties": {
+"tagline": "When patriots become heroes",
+"title": "Captain America: The First Avenger",
+"released": 2011
+      }
+    }
+  },
+  {
+    "p": {
+"identity": 174,
+"labels": [
+        "Person"
+      ],
+"properties": {
+"born": 1950,
+"name": "Joe Johnston"
+      }
+    },
+    "r": {
+"identity": 255,
+"start": 174,
+"end": 171,
+"type": "DIRECTED",
+"properties": {
+
+      }
+    },
+    "m": {
+"identity": 171,
+"labels": [
+        "Movie"
+      ],
+"properties": {
+"tagline": "When patriots become heroes",
+"title": "Captain America: The First Avenger",
+"released": 2011
+      }
+    }
+  },
+  {
+    "p": {
+"identity": 175,
+"labels": [
+        "Person"
+      ],
+"properties": {
+"born": 1913,
+"name": "Joe Simon"
+      }
+    },
+    "r": {
+"identity": 256,
+"start": 175,
+"end": 171,
+"type": "WROTE",
+"properties": {
+
+      }
+    },
+    "m": {
+"identity": 171,
+"labels": [
+        "Movie"
+      ],
+"properties": {
+"tagline": "When patriots become heroes",
+"title": "Captain America: The First Avenger",
+"released": 2011
+      }
+    }
+  },
+  {
+    "p": {
+"identity": 173,
+"labels": [
+        "Person"
+      ],
+"properties": {
+"born": 1982,
+"name": "Hayley Atwell"
+      }
+    },
+    "r": {
+"identity": 254,
+"start": 173,
+"end": 171,
+"type": "ACTED_IN",
+"properties": {
+"roles": [
+          "Peggy Carter"
+        ]
+      }
+    },
+    "m": {
+"identity": 171,
+"labels": [
+        "Movie"
+      ],
+"properties": {
+"tagline": "When patriots become heroes",
+"title": "Captain America: The First Avenger",
+"released": 2011
+      }
+    }
+  },
+  {
+    "p": {
+"identity": 172,
+"labels": [
+        "Person"
+      ],
+"properties": {
+"born": 1981,
+"name": "Chris Evans"
+      }
+    },
+    "r": {
+"identity": 253,
+"start": 172,
+"end": 171,
+"type": "ACTED_IN",
+"properties": {
+"roles": [
+          "Captain America"
+        ]
+      }
+    },
+    "m": {
+"identity": 171,
+"labels": [
+        "Movie"
+      ],
+"properties": {
+"tagline": "When patriots become heroes",
+"title": "Captain America: The First Avenger",
+"released": 2011
+      }
+    }
+  },
+  {
+    "p": {
+"identity": 176,
+"labels": [
+        "Person"
+      ],
+"properties": {
+"born": 1970,
+"name": "Christopher Markus"
+      }
+    },
+    "r": {
+"identity": 257,
+"start": 176,
+"end": 171,
+"type": "WROTE",
+"properties": {
+
+      }
+    },
+    "m": {
+"identity": 171,
+"labels": [
+        "Movie"
+      ],
+"properties": {
+"tagline": "When patriots become heroes",
+"title": "Captain America: The First Avenger",
+"released": 2011
+      }
+    }
+  }
+]

@@ -1,0 +1,66 @@
+// 1. Wszystkie filmy
+MATCH (m:Movie)
+RETURN m
+
+
+// 2. Wszystkie filmy w ktorych gral Hugo Weaving
+MATCH (:Person {name: "Hugo Weaving"})-[:ACTED_IN]->(m:Movie)
+RETURN m
+
+
+// 3. Rezyserzy filmow w ktorych gral Hugo Weaving
+MATCH (:Person {name: "Hugo Weaving"})-[:ACTED_IN]->(:Movie)<-[:DIRECTED]-(p:Person)
+RETURN DISTINCT p
+
+
+// 4. Wszystkie osoby z ktorymi Hugo Weaving gral w tych samych filmach
+MATCH (:Person {name: "Hugo Weaving"})-[:ACTED_IN]->(:Movie)<-[:ACTED_IN]-(p:Person)
+WHERE p.name <> "Hugo Weaving"
+RETURN DISTINCT p
+
+
+// 5. Wszystkie filmy osob ktore graly w Matrix
+MATCH (m:Movie)<-[:ACTED_IN]-(:Person)-[:ACTED_IN]->(:Movie {title: "The Matrix"})
+RETURN DISTINCT m
+
+
+// 6. Lista aktorow wraz z iloscia filmow w ktorych grali
+MATCH (p:Person)-[:ACTED_IN]->(m:Movie)
+RETURN p, COUNT(m) AS movieCount
+
+
+// 7. Lista osob ktore napisaly scenariusz filmu ktory wyrezyserowaly wraz z tytulami takich filmow
+MATCH (p:Person)-[:WROTE]->(m:Movie),
+      (p)-[:DIRECTED]->(m)
+RETURN p, m.title
+
+
+// 8. 
+MATCH (:Person {name: "Hugo Weaving"})-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(:Person {name: "Keanu Reeves"})
+RETURN m
+
+
+// 9a. Dodanie filmu "Captain America: The First Avenger"
+CREATE (CptAmerica:Movie {title: "Captain America: The First Avenger", released: 2011, tagline: "When patriots become heroes"})
+
+CREATE (ChEvans:Person {name: "Chris Evans", born: 1981})
+CREATE (HaAtwell:Person {name: "Hayley Atwell", born: 1982})
+CREATE
+(ChEvans)-[:ACTED_IN {roles: ['Captain America']}]->(CptAmerica),
+(HaAtwell)-[:ACTED_IN {roles: ['Peggy Carter']}]->(CptAmerica)
+
+CREATE (JoJohnston:Person {name: "Joe Johnston", born: 1950})
+CREATE (JoJohnston)-[:DIRECTED]->(CptAmerica)
+
+CREATE (JoSimon:Person {name: "Joe Simon", born: 1913})
+CREATE (ChMarkus:Person {name: "Christopher Markus", born: 1970})
+CREATE (StMcFeely:Person {name: "Stephen McFeely", born: 1970})
+CREATE 
+(JoSimon)-[:WROTE]->(CptAmerica),
+(ChMarkus)-[:WROTE]->(CptAmerica),
+(StMcFeely)-[:WROTE]->(CptAmerica)
+
+// 9b. Wyszukanie dodanego filmu z zalaczonymi informacjami
+MATCH (p:Person)-[:ACTED_IN|WROTE|DIRECTED]->(m:Movie {title: 'Captain America: The First Avenger'})
+RETURN p, m
+
