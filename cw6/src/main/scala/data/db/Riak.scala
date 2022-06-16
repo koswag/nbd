@@ -1,5 +1,5 @@
 package pl.edu.pja.s15165.cw6
-package data
+package data.db
 
 import com.scalapenos.riak.RiakClient
 
