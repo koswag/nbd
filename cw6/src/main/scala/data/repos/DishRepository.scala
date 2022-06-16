@@ -2,31 +2,44 @@ package pl.edu.pja.s15165.cw6
 package data.repos
 
 import data.db.Riak
+import data.model.Dish
+import data.repos.DishRepository.RequestProtocol._
+import data.repos.DishRepository.ResponseProtocol.{DishDeleted, DishFetched, DishStored}
 
 import akka.actor.{Actor, ActorLogging, ActorRef}
-import data.model.Dish
 
 
 class DishRepository extends Actor with ActorLogging {
-    import data.proto.DishRepositoryProtocol._
     import context.dispatcher
 
-    private val dishes = Riak.client.bucket("dishes")
+    private val dishes = Riak.client(context.system).bucket("dishes")
 
     override def receive: Receive = {
-        case StoreDish(dish) => storeDish(dish, sender)
-        case FetchDishByName(name) => fetchDishByName(name, sender)
+        case StoreDish(dish) => storeDish(dish, context.sender)
+        case FetchDishByKey(name) => fetchDishByID(name, context.sender)
+        case DeleteDishByKey(key) => removeDishByID(key, context.sender)
+        case other => log.error(s"Invalid request: $other")
     }
 
     private def storeDish(dish: Dish, actor: ActorRef): Unit =
-        dishes.storeAndFetch(dish.name, dish)
+        dishes.storeAndFetch(dish.key, dish)
             .map(_.as[Dish])
-            .onSuccess { case storedDish => actor ! storedDish }
+            .onSuccess {
+                case storedDish => actor ! DishStored(storedDish)
+            }
 
-    private def fetchDishByName(name: String, actor: ActorRef): Unit =
-        dishes.fetch(name)
+    private def fetchDishByID(key: String, actor: ActorRef): Unit =
+        dishes.fetch(key)
             .map { rawOption => rawOption.map(_.as[Dish]) }
-            .onSuccess { case dishOption => actor ! dishOption }
+            .onSuccess {
+                case dishOption => actor ! DishFetched(dishOption)
+            }
+
+    private def removeDishByID(key: String, actor: ActorRef): Unit =
+        dishes.delete(key)
+            .onSuccess {
+                case () => actor ! DishDeleted(key)
+            }
 
 }
 
