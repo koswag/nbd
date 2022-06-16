@@ -7,3 +7,5 @@ lazy val root = (project in file("."))
     name := "cw6",
     idePackagePrefix := Some("pl.edu.pja.s15165.cw6")
   )
+
+libraryDependencies += "com.scalapenos" %% "riak-scala-client" % "0.9.5"
