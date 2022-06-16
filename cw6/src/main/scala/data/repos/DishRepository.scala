@@ -29,3 +29,17 @@ class DishRepository extends Actor with ActorLogging {
             .onSuccess { case dishOption => actor ! dishOption }
 
 }
+
+object DishRepository {
+    object RequestProtocol {
+        case class StoreDish(dish: Dish)
+        case class FetchDishByKey(key: String)
+        case class DeleteDishByKey(key: String)
+    }
+
+    object ResponseProtocol {
+        case class DishStored(dish: Dish)
+        case class DishFetched(dishOption: Option[Dish])
+        case class DishDeleted(key: String)
+    }
+}
