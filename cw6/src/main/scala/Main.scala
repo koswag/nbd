@@ -34,7 +34,7 @@ object Main {
         updateAndFetchDish(dish)
         deleteAndFetchDish(dish.key)
 
-        system.awaitTermination()
+        system.shutdown()
     }
 
 
