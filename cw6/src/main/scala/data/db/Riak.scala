@@ -1,12 +1,13 @@
 package pl.edu.pja.s15165.cw6
 package data.db
 
+import akka.actor.ActorSystem
 import com.scalapenos.riak.RiakClient
 
 object Riak {
     private val HOST = "localhost"
-    private val PORT = 8089
-    private val CLIENT = RiakClient(HOST, PORT)
+    private val PORT = 8098
 
-    def client: RiakClient = CLIENT
+    def client(system: ActorSystem): RiakClient =
+        RiakClient(system, HOST, PORT)
 }
