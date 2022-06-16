@@ -6,6 +6,7 @@ import spray.json.RootJsonFormat
 
 
 case class Dish(
+    key: String,
     name: String,
     description: String,
     price: Int,
@@ -13,5 +14,5 @@ case class Dish(
 )
 
 object Dish {
-    implicit val jsonFormat: RootJsonFormat[Dish] = jsonFormat4(Dish.apply)
+    implicit val jsonFormat: RootJsonFormat[Dish] = jsonFormat5(Dish.apply)
 }
