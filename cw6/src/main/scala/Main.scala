@@ -1,5 +1,5 @@
-package pl.edu.pja.s15165
+package pl.edu.pja.s15165.cw6
 
-@main def app(): Unit = {
-    
+object Main extends App {
+
 }
