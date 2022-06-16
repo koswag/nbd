@@ -81,8 +81,9 @@ object Main {
         dishService.deleteDish(key)
 
         dishService.fetchDish(key).dishOption match {
-            case Some(dish) => println(s"Dish is not deleted: $dish")
             case None => println(s"Dish[$key] deleted successfully")
+            case Some(dish) =>
+                throw new IllegalStateException(s"Dish[$key] is not deleted: $dish")
         }
     }
 
