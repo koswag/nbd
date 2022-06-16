@@ -30,15 +30,19 @@ object Main {
 
 
     def main(args: Array[String]): Unit = {
-        storeAndFetchDish(dish)
-        updateAndFetchDish(dish)
+        val savedDish = storeAndFetchDish(dish)
+        println(s"Dish stored: $savedDish")
+
+        val updatedDish = updateAndFetchDish(savedDish)
+        println(s"Dish updated: $updatedDish")
+
         deleteAndFetchDish(dish.key)
 
         system.shutdown()
     }
 
 
-    def storeAndFetchDish(dish: Dish): Unit = {
+    def storeAndFetchDish(dish: Dish): Dish = {
         println("Saving new dish..")
         dishService.storeDish(dish) match {
             case DishStored(dish) => println(s"Dish[${dish.key}] stored")
@@ -46,13 +50,14 @@ object Main {
 
         println("Reading new dish..")
         dishService.fetchDish(dish.key).dishOption match {
-            case Some(dish) => println(s"Dish stored: $dish")
-            case None => println(s"Dish[${dish.key}] not found")
+            case Some(dish) => dish
+            case None =>
+                throw new IllegalStateException(s"Stored dish of key '${dish.key}' not found")
         }
     }
 
 
-    def updateAndFetchDish(dish: Dish): Unit = {
+    def updateAndFetchDish(dish: Dish): Dish = {
         val updatedDish = dish.copy(
             ingredients = dish.ingredients :+ Ingredient("Red pepper", 3)
         )
@@ -64,8 +69,9 @@ object Main {
 
         println("Reading updated dish..")
         dishService.fetchDish(dish.key).dishOption match {
-            case Some(dish) => println(s"Updated dish: $dish")
-            case None => println(s"Dish[${dish.key}] not found")
+            case Some(dish) => dish
+            case None =>
+                throw new IllegalStateException(s"Updated dish of key '${dish.key}' not found")
         }
     }
 
