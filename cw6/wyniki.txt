@@ -1,0 +1,15 @@
+Saving new dish..
+Dish[pepperoni] stored
+Reading new dish..
+Dish stored: Dish(pepperoni,Pizza Pepperoni,Pizza with cheese and pepperoni,25,List(Ingredient(Tomato sauce,1), Ingredient(cheese,3), Ingredient(Pepperoni,5)))
+
+Saving updated dish..
+Dish[pepperoni] updated
+Reading updated dish..
+Updated dish: Dish(pepperoni,Pizza Pepperoni,Pizza with cheese and pepperoni,25,List(Ingredient(Tomato sauce,1), Ingredient(cheese,3), Ingredient(Pepperoni,5), Ingredient(Red pepper,3)))
+
+Deleting dish..
+Dish[pepperoni] deleted successfully
+[INFO] [06/16/2022 18:45:42.772] [dishes-service-akka.actor.default-dispatcher-8] [akka://dishes-service/user/IO-HTTP/host-connector-0/0] Message [akka.dispatch.sysmsg.DeathWatchNotification] from Actor[akka://dishes-service/user/IO-HTTP/host-connector-0/0#-1593262889] to Actor[akka://dishes-service/user/IO-HTTP/host-connector-0/0#-1593262889] was not delivered. [1] dead letters encountered. This logging can be turned off or adjusted with configuration settings 'akka.log-dead-letters' and 'akka.log-dead-letters-during-shutdown'.
+
+Process finished with exit code 0
