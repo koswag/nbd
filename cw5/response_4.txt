@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+X-Riak-Vclock: a85hYGBgzGDKBVI8+xkWvn+QGL4BIpTImsfK4F4lf4cvCwA=
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Link: </buckets/s15165>; rel="up"
+Last-Modified: Thu, 16 Jun 2022 09:56:23 GMT
+ETag: "3K8DdI61kuImUN9aJUttXk"
+Date: Thu, 16 Jun 2022 09:56:23 GMT
+Content-Type: application/json
+Content-Length: 89
+
+{"username": "user2", "yearOfBirth": 1998, "email": "user2@example.com", "active": false}

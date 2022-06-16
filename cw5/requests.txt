@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# 1.
+curl -XPUT \
+     -H "Content-Type: application/json" \
+     -d '{"username": "user1", "yearOfBirth": 1980, "email": "user1@example.com", "active": true}' \
+     -i http://localhost:8098/buckets/s15165/keys/user1
+
+curl -XPUT \
+    -H "Content-Type: application/json" \
+    -d '{"username": "user2", "yearOfBirth": 1998, "email": "user2@example.com", "active": false}' \
+    -i http://localhost:8098/buckets/s15165/keys/user2
+
+curl -XPUT \
+    -H "Content-Type: application/json" \
+    -d '{"username": "user3", "yearOfBirth": 1991, "email": "user3@example.com", "active": false}' \
+    -i http://localhost:8098/buckets/s15165/keys/user3
+
+curl -XPUT \
+    -H "Content-Type: application/json" \
+    -d '{"username": "user4", "yearOfBirth": 1976, "email": "user4@example.com", "active": true}' \
+    -i http://localhost:8098/buckets/s15165/keys/user4
+
+curl -XPUT \
+    -H "Content-Type: application/json" \
+    -d '{"username": "user5", "yearOfBirth": 1988, "email": "user5@example.com", "active": true}' \
+    -i http://localhost:8098/buckets/s15165/keys/user5
+
+# 2.
+curl -i http://localhost:8098/buckets/s15165/keys/user1
+
+# 3.
+curl -XPUT \
+    -H "Content-Type: application/json" \
+    -d '{"username": "user2", "yearOfBirth": 1998, "promoted": false, "email": "user2@example.com", "active": false}' \
+    -i http://localhost:8098/buckets/s15165/keys/user2?returnbody=true
+
+# 4.
+curl -XPUT \
+    -H "Content-Type: application/json" \
+    -d '{"username": "user2", "yearOfBirth": 1998, "email": "user2@example.com", "active": false}' \
+    -i http://localhost:8098/buckets/s15165/keys/user2?returnbody=true
+
+# 5.
+curl -XPUT \
+    -H "Content-Type: application/json" \
+    -d '{"username": "user2", "yearOfBirth": 1998, "email": "user2@example.com.pl", "active": true}' \
+    -i http://localhost:8098/buckets/s15165/keys/user2?returnbody=true
+
+# 6.
+curl -XDELETE -i http://localhost:8098/buckets/s15165/keys/user4
+
+# 7.
+curl -i http://localhost:8098/buckets/s15165/keys/user4
+
+# 8.
+curl -XPOST \
+    -H "Content-Type: application/json" \
+    -d '{"key": "value"}' \
+    -i http://localhost:8098/buckets/s15165/keys
+
+# 9.
+curl -i http://localhost:8098/buckets/s15165/keys/LWgZHdwTf7DNoQDSBzQLeZbFcTu
+
+# 10.
+curl -XDELETE -i http://localhost:8098/buckets/s15165/keys/LWgZHdwTf7DNoQDSBzQLeZbFcTu
